@@ -1,13 +1,16 @@
 import avatar from "../images/avatar.png";
 
 function handleEditAvatarClick() {
-  document.querySelector(".popup_edit_avatar");
+  console.log("qwe");
+  document.querySelector(".popup_edit_avatar").classList.add("popup_opened");
 }
 function handleEditProfileClick() {
-  document.querySelector(".popup_edit_profile-info");
+  document
+    .querySelector(".popup_edit_profile-info")
+    .classList.add("popup_opened");
 }
 function handleAddPlaceClick() {
-  document.querySelector(".popup_add_card");
+  document.querySelector(".popup_add_card").classList.add("popup_opened");
 }
 
 function Main() {
