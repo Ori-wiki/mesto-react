@@ -1,3 +1,5 @@
+import React from "react";
+
 function PopupWihtForm(props) {
   return (
     <div className={`popup popup_${props.name}`}>

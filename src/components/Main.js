@@ -1,3 +1,5 @@
+import React from "react";
+
 import avatar from "../images/avatar.png";
 
 function handleEditAvatarClick() {
