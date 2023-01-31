@@ -3,19 +3,7 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-
-function handleEditAvatarClick() {
-  console.log("qwe");
-  document.querySelector(".popup_edit_avatar").classList.add("popup_opened");
-}
-function handleEditProfileClick() {
-  document
-    .querySelector(".popup_edit_profile-info")
-    .classList.add("popup_opened");
-}
-function handleAddPlaceClick() {
-  document.querySelector(".popup_add_card").classList.add("popup_opened");
-}
+import PopupWihtForm from "./PopupWithForm.js";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
@@ -26,6 +14,7 @@ function App() {
     setEditProfileClick(!isEditProfilePopupOpen);
   }
   function handleEditProfileClick() {
+    console.log(setAddPlaceClick);
     setAddPlaceClick(!isAddPlacePopupOpen);
   }
   function handleAddPlaceClick() {
@@ -43,53 +32,7 @@ function App() {
         />
         <Footer />
         {/*  Попап редактирования prfile__info  */}
-        <div className="popup popup_edit_profile-info">
-          <div className="popup__container">
-            <h2 className="popup__title">Редактировать профиль</h2>
-            <form name="profileForm" className="popup__form" noValidate>
-              <fieldset className="popup__field">
-                <label className="popup__form-field">
-                  <input
-                    name="name"
-                    id="name-input"
-                    placeholder="Имя"
-                    required
-                    minLength={2}
-                    maxLength={40}
-                    className="popup__input popup__input_data_name"
-                    type="text"
-                  />
-                  <span className="popup__input-error name-input-error" />
-                </label>
-                <label className="popup__form-field">
-                  <input
-                    name="profession"
-                    id="profession-input"
-                    placeholder="Профессия"
-                    required
-                    minLength={2}
-                    maxLength={200}
-                    className="popup__input popup__input_data_profession"
-                    type="text"
-                  />
-                  <span className="popup__input-error profession-input-error" />
-                </label>
-                <button
-                  type="submit"
-                  className="popup__button popup__button-save"
-                  disabled={true}
-                >
-                  Сохранить
-                </button>
-              </fieldset>
-            </form>
-            <button
-              type="button"
-              className="popup__button-close"
-              aria-label="Закрыть форму редактирования"
-            />
-          </div>
-        </div>
+        <PopupWihtForm name="edit_profile-info" isOpen={false} />
         {/*Попап добавления новой карточки card*/}
         <div className="popup popup_add_card">
           <div className="popup__container">
