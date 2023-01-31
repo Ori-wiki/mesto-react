@@ -2,27 +2,15 @@ import React from "react";
 
 import avatar from "../images/avatar.png";
 
-function handleEditAvatarClick() {
-  console.log("qwe");
-  document.querySelector(".popup_edit_avatar").classList.add("popup_opened");
-}
-function handleEditProfileClick() {
-  document
-    .querySelector(".popup_edit_profile-info")
-    .classList.add("popup_opened");
-}
-function handleAddPlaceClick() {
-  document.querySelector(".popup_add_card").classList.add("popup_opened");
-}
-
-function Main() {
+function Main(props) {
+  console.log(props.name);
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-box">
           <img src={avatar} alt="Аватар" className="profile__avatar" />
           <button
-            onClick={handleEditAvatarClick}
+            onClick={props.onEditAvatar}
             className="profile__avatar-edit-button"
             aria-label="Загрузить новый аватар"
           />
@@ -30,7 +18,7 @@ function Main() {
         <div className="profile__info">
           <h1 className="profile__name">Имя</h1>
           <button
-            onClick={handleEditProfileClick}
+            onClick={props.onEditProfile}
             className="profile__info-edit-button"
             type="button"
             aria-label="Редактировать профиль"
@@ -38,7 +26,7 @@ function Main() {
           <p className="profile__profession">Немного о себе</p>
         </div>
         <button
-          onClick={handleAddPlaceClick}
+          onClick={props.onAddPlace}
           className="profile__add-button"
           type="button"
           aria-label="Добавить картинку"

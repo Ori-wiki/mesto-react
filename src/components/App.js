@@ -3,12 +3,44 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
+
+function handleEditAvatarClick() {
+  console.log("qwe");
+  document.querySelector(".popup_edit_avatar").classList.add("popup_opened");
+}
+function handleEditProfileClick() {
+  document
+    .querySelector(".popup_edit_profile-info")
+    .classList.add("popup_opened");
+}
+function handleAddPlaceClick() {
+  document.querySelector(".popup_add_card").classList.add("popup_opened");
+}
+
 function App() {
+  const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlaceClick] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarClick] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setEditProfileClick(!isEditProfilePopupOpen);
+  }
+  function handleEditProfileClick() {
+    setAddPlaceClick(!isAddPlacePopupOpen);
+  }
+  function handleAddPlaceClick() {
+    setEditAvatarClick(!isEditAvatarPopupOpen);
+  }
+
   return (
     <>
       <div className="page">
         <Header />
-        <Main />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+        />
         <Footer />
         {/*  Попап редактирования prfile__info  */}
         <div className="popup popup_edit_profile-info">
