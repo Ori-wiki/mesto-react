@@ -1,8 +1,7 @@
 import React from "react";
 
-import avatar from "../images/avatar.png";
-
 import api from "../utils/Api.js";
+import Card from "./Card.js";
 
 function Main(props) {
   const [userName, setUserName] = React.useState("Имя");
@@ -18,10 +17,8 @@ function Main(props) {
     });
   }, []);
   React.useEffect(() => {
-    console.log(api);
     api.getCards().then((res) => {
       setCards(res);
-      console.log(cards);
     });
   }, []);
 
@@ -62,30 +59,11 @@ function Main(props) {
         <ul className="cards__list">
           {cards.map((card) => {
             return (
-              <li className="card">
-                <div
-                  className="card__list-img"
-                  style={{ backgroundImage: `url(${card.link})` }}
-                ></div>
-                <div className="card__info">
-                  <h2 className="card__title">{card.name}</h2>
-                  <button
-                    type="button"
-                    title="Удалить карточку"
-                    className="card__delete-button"
-                  />
-                  <div className="card__box">
-                    <button
-                      type="button"
-                      className="card__like-button"
-                      aria-label="Поставить лайк"
-                    />
-                    <span className="card__like-counter">
-                      {card.likes.length}
-                    </span>
-                  </div>
-                </div>
-              </li>
+              <Card
+                card={card}
+                key={card._id}
+                onCardClick={props.onCardClick}
+              />
             );
           })}
         </ul>

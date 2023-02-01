@@ -47,14 +47,71 @@ function App() {
         name="edit_profile-info"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      ></PopupWihtForm>
+      >
+        <>
+          <label className="popup__form-field">
+            <input
+              name="name"
+              id="name-input"
+              placeholder="Имя"
+              required
+              minLength={2}
+              maxLength={40}
+              className="popup__input popup__input_data_name"
+              type="text"
+            />
+            <span className="popup__input-error name-input-error" />
+          </label>
+          <label className="popup__form-field">
+            <input
+              name="profession"
+              id="profession-input"
+              placeholder="Профессия"
+              required
+              minLength={2}
+              maxLength={200}
+              className="popup__input popup__input_data_profession"
+              type="text"
+            />
+            <span className="popup__input-error profession-input-error" />
+          </label>
+        </>
+      </PopupWihtForm>
       {/*Попап добавления новой карточки card*/}
       <PopupWihtForm
         title="Новое место"
         name="add_card"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-      ></PopupWihtForm>
+      >
+        <>
+          <label className="popup__form-field">
+            <input
+              name="cardName"
+              id="card-name-input"
+              placeholder="Название"
+              required
+              minLength={2}
+              maxLength={30}
+              className="popup__input popup__input_data_card-name"
+              type="text"
+            />
+            <span className="popup__input-error card-name-input-error" />
+          </label>
+          <label className="popup__form-field">
+            <input
+              name="cardLink"
+              id="card-link-input"
+              placeholder="Ссылка на картинку"
+              required
+              maxLength={200}
+              className="popup__input popup__input_data_card-link"
+              type="url"
+            />
+            <span className="popup__input-error card-link-input-error" />
+          </label>
+        </>
+      </PopupWihtForm>
       {/* Попап редактирования аватара */}
       <PopupWihtForm
         title="Обновить аватар"

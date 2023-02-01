@@ -7,6 +7,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background: linear-gradient(blue, pink);
+  /* background: linear-gradient(blue, pink); */
   object-fit: cover;
 }
