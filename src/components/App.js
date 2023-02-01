@@ -118,7 +118,20 @@ function App() {
         name="edit_avatar"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-      ></PopupWihtForm>
+      >
+        <label className="popup__form-field">
+          <input
+            name="avatarLink"
+            id="avatar-link-input"
+            placeholder="Cсылка на картинку"
+            required
+            maxLength={200}
+            className="popup__input popup__input_data_card-link"
+            type="url"
+          />
+          <span className="popup__input-error avatar-link-input-error" />
+        </label>
+      </PopupWihtForm>
       {/* Попап открытой фотографии */}
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* Попап с подверждением удаления карточки */}
