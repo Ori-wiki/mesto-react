@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWihtForm(props) {
+function PopupWithForm(props) {
   return (
     <div
       className={`popup popup_${props.name} ${props.isOpen && "popup_opened"}`}
@@ -28,4 +28,4 @@ function PopupWihtForm(props) {
   );
 }
 
-export default PopupWihtForm;
+export default PopupWithForm;

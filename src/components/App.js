@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-import PopupWihtForm from "./PopupWithForm.js";
+import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
       />
       <Footer />
       {/*  Попап редактирования prfile__info  */}
-      <PopupWihtForm
+      <PopupWithForm
         title="Редактировать профиль"
         name="edit_profile-info"
         isOpen={isEditProfilePopupOpen}
@@ -76,9 +76,9 @@ function App() {
             <span className="popup__input-error profession-input-error" />
           </label>
         </>
-      </PopupWihtForm>
+      </PopupWithForm>
       {/*Попап добавления новой карточки card*/}
-      <PopupWihtForm
+      <PopupWithForm
         title="Новое место"
         name="add_card"
         isOpen={isAddPlacePopupOpen}
@@ -111,9 +111,9 @@ function App() {
             <span className="popup__input-error card-link-input-error" />
           </label>
         </>
-      </PopupWihtForm>
+      </PopupWithForm>
       {/* Попап редактирования аватара */}
-      <PopupWihtForm
+      <PopupWithForm
         title="Обновить аватар"
         name="edit_avatar"
         isOpen={isEditAvatarPopupOpen}
@@ -131,7 +131,7 @@ function App() {
           />
           <span className="popup__input-error avatar-link-input-error" />
         </label>
-      </PopupWihtForm>
+      </PopupWithForm>
       {/* Попап открытой фотографии */}
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* Попап с подверждением удаления карточки */}
