@@ -4,11 +4,13 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWihtForm from "./PopupWithForm.js";
+import ImagePopup from "./ImagePopup.js";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlaceClick] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarClick] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     setEditAvatarClick(!isEditAvatarPopupOpen);
@@ -19,10 +21,14 @@ function App() {
   function handleAddPlaceClick() {
     setAddPlaceClick(!isAddPlacePopupOpen);
   }
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
   function closeAllPopups() {
     setEditAvatarClick(false);
     setEditProfileClick(false);
     setAddPlaceClick(false);
+    setSelectedCard({});
   }
 
   return (
@@ -32,6 +38,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       {/*  Попап редактирования prfile__info  */}
@@ -40,35 +47,23 @@ function App() {
         name="edit_profile-info"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      />
+      ></PopupWihtForm>
       {/*Попап добавления новой карточки card*/}
       <PopupWihtForm
         title="Новое место"
         name="add_card"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-      />
+      ></PopupWihtForm>
       {/* Попап редактирования аватара */}
       <PopupWihtForm
         title="Обновить аватар"
         name="edit_avatar"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-      />
+      ></PopupWihtForm>
       {/* Попап открытой фотографии */}
-      <div className="popup popup_open_img">
-        <div className="popup__fullScreen">
-          <figure className="popup__image-figure">
-            <img className="popup__image" alt="Фото в попапе из карточки" />
-            <figcaption className="popup__image-subtitle" />
-          </figure>
-          <button
-            type="button"
-            className="popup__button-close"
-            aria-label="Закрыть фотографию"
-          />
-        </div>
-      </div>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* Попап с подверждением удаления карточки */}
       <div className="popup popup_confrim">
         <div className="popup__container">
@@ -93,8 +88,6 @@ function App() {
           />
         </div>
       </div>
-      {/*Template card*/}
-      <template className="card_template" />
     </div>
   );
 }
