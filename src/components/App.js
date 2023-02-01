@@ -14,11 +14,15 @@ function App() {
     setEditAvatarClick(!isEditAvatarPopupOpen);
   }
   function handleEditProfileClick() {
-    console.log(setAddPlaceClick);
     setEditProfileClick(!isEditProfilePopupOpen);
   }
   function handleAddPlaceClick() {
     setAddPlaceClick(!isAddPlacePopupOpen);
+  }
+  function closeAllPopups() {
+    setEditAvatarClick(false);
+    setEditProfileClick(false);
+    setAddPlaceClick(false);
   }
 
   return (
@@ -35,18 +39,21 @@ function App() {
         title="Редактировать профиль"
         name="edit_profile-info"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       />
       {/*Попап добавления новой карточки card*/}
       <PopupWihtForm
         title="Новое место"
         name="add_card"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       />
       {/* Попап редактирования аватара */}
       <PopupWihtForm
         title="Обновить аватар"
         name="edit_avatar"
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
       />
       {/* Попап открытой фотографии */}
       <div className="popup popup_open_img">
