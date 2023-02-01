@@ -21,6 +21,7 @@ function PopupWihtForm(props) {
           type="button"
           className="popup__button-close"
           aria-label="Закрыть форму"
+          onClick={props.onClose}
         />
       </div>
     </div>
