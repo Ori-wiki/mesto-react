@@ -135,7 +135,7 @@ function App() {
       {/* Попап открытой фотографии */}
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* Попап с подверждением удаления карточки */}
-      <div className="popup popup_confrim">
+      {/* <div className="popup popup_confrim">
         <div className="popup__container">
           <h2 className="popup__title">Вы уверены?</h2>
           <form
@@ -157,7 +157,7 @@ function App() {
             aria-label="Поставить лайк"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
