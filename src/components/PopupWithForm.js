@@ -2,9 +2,11 @@ import React from "react";
 
 function PopupWihtForm(props) {
   return (
-    <div className={`popup popup_${props.name}`}>
+    <div
+      className={`popup popup_${props.name} ${props.isOpen && "popup_opened"}`}
+    >
       <div className="popup__container">
-        <h2 className="popup__title">{props.name}</h2>
+        <h2 className="popup__title">{props.title}</h2>
         <form name={props.name} className="popup__form" noValidate>
           {props.children}
           <button
