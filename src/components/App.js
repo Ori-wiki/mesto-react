@@ -48,34 +48,32 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
-        <>
-          <label className="popup__form-field">
-            <input
-              name="name"
-              id="name-input"
-              placeholder="Имя"
-              required
-              minLength={2}
-              maxLength={40}
-              className="popup__input popup__input_data_name"
-              type="text"
-            />
-            <span className="popup__input-error name-input-error" />
-          </label>
-          <label className="popup__form-field">
-            <input
-              name="profession"
-              id="profession-input"
-              placeholder="Профессия"
-              required
-              minLength={2}
-              maxLength={200}
-              className="popup__input popup__input_data_profession"
-              type="text"
-            />
-            <span className="popup__input-error profession-input-error" />
-          </label>
-        </>
+        <label className="popup__form-field">
+          <input
+            name="name"
+            id="name-input"
+            placeholder="Имя"
+            required
+            minLength={2}
+            maxLength={40}
+            className="popup__input popup__input_data_name"
+            type="text"
+          />
+          <span className="popup__input-error name-input-error" />
+        </label>
+        <label className="popup__form-field">
+          <input
+            name="profession"
+            id="profession-input"
+            placeholder="Профессия"
+            required
+            minLength={2}
+            maxLength={200}
+            className="popup__input popup__input_data_profession"
+            type="text"
+          />
+          <span className="popup__input-error profession-input-error" />
+        </label>
       </PopupWithForm>
       {/*Попап добавления новой карточки card*/}
       <PopupWithForm
