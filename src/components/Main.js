@@ -3,7 +3,7 @@ import React from "react";
 import api from "../utils/Api.js";
 import Card from "./Card.js";
 
-function Main(props) {
+function Main({ onAddPlace, onEditAvatar, onEditProfile }) {
   const [userName, setUserName] = React.useState("Имя");
   const [userDescription, setUserDescription] =
     React.useState("Немного о себе");
@@ -33,7 +33,7 @@ function Main(props) {
             style={{ backgroundImage: `url(${userAvatar})` }}
           ></div>
           <button
-            onClick={props.onEditAvatar}
+            onClick={onEditAvatar}
             className="profile__avatar-edit-button"
             aria-label="Загрузить новый аватар"
           />
@@ -41,7 +41,7 @@ function Main(props) {
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
           <button
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
             className="profile__info-edit-button"
             type="button"
             aria-label="Редактировать профиль"
@@ -49,7 +49,7 @@ function Main(props) {
           <p className="profile__profession">{userDescription}</p>
         </div>
         <button
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
           className="profile__add-button"
           type="button"
           aria-label="Добавить картинку"
