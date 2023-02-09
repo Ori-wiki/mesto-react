@@ -6,6 +6,7 @@ import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/Api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
@@ -16,7 +17,7 @@ function App() {
 
   React.useEffect(() => {
     api.getUserInfo().then((res) => {
-      console.log(currentUser);
+      console.log(res);
       setCurrentUser(res);
     });
   }, []);
