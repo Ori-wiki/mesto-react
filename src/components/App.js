@@ -14,11 +14,16 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarClick] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
-
+  const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     api.getUserInfo().then((res) => {
       console.log(res);
       setCurrentUser(res);
+    });
+  }, []);
+  React.useEffect(() => {
+    api.getCards().then((res) => {
+      setCards(res);
     });
   }, []);
 
@@ -40,6 +45,13 @@ function App() {
     setAddPlaceClick(false);
     setSelectedCard({});
   }
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -50,6 +62,8 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          cards={cards}
         />
         <Footer />
         {/*  Попап редактирования prfile__info  */}
