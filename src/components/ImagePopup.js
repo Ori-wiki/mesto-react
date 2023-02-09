@@ -6,9 +6,7 @@ function ImagePopup({ card, onClose }) {
       <div className="popup__fullScreen">
         <figure className="popup__image-figure">
           <img className="popup__image" alt={card.name} src={card.link} />
-          <figcaption className="popup__image-subtitle">
-            {props.card.name}
-          </figcaption>
+          <figcaption className="popup__image-subtitle">{card.name}</figcaption>
         </figure>
         <button
           type="button"
