@@ -18,7 +18,6 @@ function App() {
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     api.getUserInfo().then((res) => {
-      console.log(res);
       setCurrentUser(res);
     });
   }, []);
@@ -59,6 +58,11 @@ function App() {
       setCards((state) => state.filter((c) => c._id !== card._id));
     });
   }
+  function handleUpdateUser(data) {
+    api.setUserInfo(data).then((res) => {
+      console.log(res);
+    });
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -77,6 +81,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
         {/*Попап добавления новой карточки card*/}
         <PopupWithForm
