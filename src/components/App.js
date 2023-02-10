@@ -20,14 +20,20 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
-    api.getUserInfo().then((res) => {
-      setCurrentUser(res);
-    });
+    api
+      .getUserInfo()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
   React.useEffect(() => {
-    api.getCards().then((res) => {
-      setCards(res);
-    });
+    api
+      .getCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   function handleEditAvatarClick() {
@@ -62,23 +68,33 @@ function App() {
     });
   }
   function handleUpdateUser(data) {
-    api.setUserInfo(data).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .setUserInfo(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
   function handleUpdateAvatar(data) {
-    api.setUserAvatar(data).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .setUserAvatar(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleAddPlaceSubmit(data) {
-    api.postCard(data).then((res) => {
-      setCards([res, ...cards]);
-      closeAllPopups();
-    });
+    api
+      .postCard(data)
+      .then((res) => {
+        setCards([res, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }
   return (
     <CurrentUserContext.Provider value={currentUser}>
