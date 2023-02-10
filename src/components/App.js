@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import EditProfilePopup from "./EditProfilePopup.js";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
@@ -73,39 +74,10 @@ function App() {
         />
         <Footer />
         {/*  Попап редактирования prfile__info  */}
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="edit_profile-info"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <label className="popup__form-field">
-            <input
-              name="name"
-              id="name-input"
-              placeholder="Имя"
-              required
-              minLength={2}
-              maxLength={40}
-              className="popup__input popup__input_data_name"
-              type="text"
-            />
-            <span className="popup__input-error name-input-error" />
-          </label>
-          <label className="popup__form-field">
-            <input
-              name="profession"
-              id="profession-input"
-              placeholder="Профессия"
-              required
-              minLength={2}
-              maxLength={200}
-              className="popup__input popup__input_data_profession"
-              type="text"
-            />
-            <span className="popup__input-error profession-input-error" />
-          </label>
-        </PopupWithForm>
+        />
         {/*Попап добавления новой карточки card*/}
         <PopupWithForm
           title="Новое место"

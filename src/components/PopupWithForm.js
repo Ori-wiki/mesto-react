@@ -1,14 +1,12 @@
 import React from "react";
 
-function PopupWithForm(props) {
+function PopupWithForm({ name, title, children, isOpen, onClose }) {
   return (
-    <div
-      className={`popup popup_${props.name} ${props.isOpen && "popup_opened"}`}
-    >
+    <div className={`popup popup_${name} ${isOpen && "popup_opened"}`}>
       <div className="popup__container">
-        <h2 className="popup__title">{props.title}</h2>
-        <form name={props.name} className="popup__form" noValidate>
-          {props.children}
+        <h2 className="popup__title">{title}</h2>
+        <form name={name} className="popup__form" noValidate>
+          {children}
           <button
             type="submit"
             className="popup__button popup__button-save"
@@ -21,7 +19,7 @@ function PopupWithForm(props) {
           type="button"
           className="popup__button-close"
           aria-label="Закрыть форму"
-          onClick={props.onClose}
+          onClick={onClose}
         />
       </div>
     </div>
