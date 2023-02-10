@@ -59,8 +59,12 @@ function App() {
     });
   }
   function handleUpdateUser(data) {
+    console.log("qwe");
+    console.log(data);
+
     api.setUserInfo(data).then((res) => {
-      console.log(res);
+      setCurrentUser(res);
+      closeAllPopups();
     });
   }
   return (

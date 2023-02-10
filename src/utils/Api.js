@@ -61,7 +61,7 @@ class Api {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.profession,
+        about: data.about,
       }),
     }).then((res) => this._checkResult(res));
   }
