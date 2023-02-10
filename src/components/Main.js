@@ -1,26 +1,21 @@
 import React from "react";
 
-import api from "../utils/Api.js";
 import Card from "./Card.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main(props) {
-  const [userName, setUserName] = React.useState("Имя");
-  const [userDescription, setUserDescription] =
-    React.useState("Немного о себе");
-  const [userAvatar, setUserAvatar] = React.useState();
-  const [cards, setCards] = React.useState([]);
-  React.useEffect(() => {
-    api.getUserInfo().then((res) => {
-      setUserName(res.name);
-      setUserDescription(res.about);
-      setUserAvatar(res.avatar);
-    });
-  }, []);
-  React.useEffect(() => {
-    api.getCards().then((res) => {
-      setCards(res);
-    });
-  }, []);
+function Main({
+  onAddPlace,
+  onEditAvatar,
+  onEditProfile,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
+}) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const { name, about, avatar } = currentUser;
+
+  // const [cards, setCards] = React.useState([]);
 
   return (
     <main className="content">
@@ -30,26 +25,26 @@ function Main(props) {
             // src={userAvatar}
             alt="Аватар"
             className="profile__avatar"
-            style={{ backgroundImage: `url(${userAvatar})` }}
+            style={{ backgroundImage: `url(${avatar})` }}
           ></div>
           <button
-            onClick={props.onEditAvatar}
+            onClick={onEditAvatar}
             className="profile__avatar-edit-button"
             aria-label="Загрузить новый аватар"
           />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{name}</h1>
           <button
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
             className="profile__info-edit-button"
             type="button"
             aria-label="Редактировать профиль"
           />
-          <p className="profile__profession">{userDescription}</p>
+          <p className="profile__profession">{about}</p>
         </div>
         <button
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
           className="profile__add-button"
           type="button"
           aria-label="Добавить картинку"
@@ -62,7 +57,9 @@ function Main(props) {
               <Card
                 card={card}
                 key={card._id}
-                onCardClick={props.onCardClick}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
               />
             );
           })}
