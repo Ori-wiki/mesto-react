@@ -3,16 +3,19 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfileClick] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlaceClick] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarClick] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -28,26 +31,26 @@ function App() {
   }, []);
 
   function handleEditAvatarClick() {
-    setEditAvatarClick(!isEditAvatarPopupOpen);
+    setIsEditAvatarPopupOpen(true);
   }
   function handleEditProfileClick() {
-    setEditProfileClick(!isEditProfilePopupOpen);
+    setIsEditProfilePopupOpen(true);
   }
   function handleAddPlaceClick() {
-    setAddPlaceClick(!isAddPlacePopupOpen);
+    setIsAddPlacePopupOpen(true);
   }
   function handleCardClick(card) {
     setSelectedCard(card);
   }
   function closeAllPopups() {
-    setEditAvatarClick(false);
-    setEditProfileClick(false);
-    setAddPlaceClick(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
     setSelectedCard({});
   }
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    console.log("qwe");
+
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
@@ -59,11 +62,21 @@ function App() {
     });
   }
   function handleUpdateUser(data) {
-    console.log("qwe");
-    console.log(data);
-
     api.setUserInfo(data).then((res) => {
       setCurrentUser(res);
+      closeAllPopups();
+    });
+  }
+  function handleUpdateAvatar(data) {
+    api.setUserAvatar(data).then((res) => {
+      setCurrentUser(res);
+      closeAllPopups();
+    });
+  }
+
+  function handleAddPlaceSubmit(data) {
+    api.postCard(data).then((res) => {
+      setCards([res, ...cards]);
       closeAllPopups();
     });
   }
@@ -88,60 +101,17 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
         {/*Попап добавления новой карточки card*/}
-        <PopupWithForm
-          title="Новое место"
-          name="add_card"
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-        >
-          <>
-            <label className="popup__form-field">
-              <input
-                name="cardName"
-                id="card-name-input"
-                placeholder="Название"
-                required
-                minLength={2}
-                maxLength={30}
-                className="popup__input popup__input_data_card-name"
-                type="text"
-              />
-              <span className="popup__input-error card-name-input-error" />
-            </label>
-            <label className="popup__form-field">
-              <input
-                name="cardLink"
-                id="card-link-input"
-                placeholder="Ссылка на картинку"
-                required
-                maxLength={200}
-                className="popup__input popup__input_data_card-link"
-                type="url"
-              />
-              <span className="popup__input-error card-link-input-error" />
-            </label>
-          </>
-        </PopupWithForm>
+          onAddPlace={handleAddPlaceSubmit}
+        />
         {/* Попап редактирования аватара */}
-        <PopupWithForm
-          title="Обновить аватар"
-          name="edit_avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <label className="popup__form-field">
-            <input
-              name="avatarLink"
-              id="avatar-link-input"
-              placeholder="Cсылка на картинку"
-              required
-              maxLength={200}
-              className="popup__input popup__input_data_card-link"
-              type="url"
-            />
-            <span className="popup__input-error avatar-link-input-error" />
-          </label>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
         {/* Попап открытой фотографии */}
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         {/* Попап с подверждением удаления карточки */}
