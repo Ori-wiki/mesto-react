@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 import api from "../utils/Api.js";
@@ -10,6 +10,7 @@ import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
+import Login from "./Login.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -102,20 +103,24 @@ function App() {
       <div className="page">
         <Header />
         <Routes>
-          <Route path="/sign-in">qwe</Route>
-          <Route path="/sign-up">zxc</Route>
-          <Route path="/">
-            {/* <Main
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
-              cards={cards}
-            /> */}
-            МЕню
-          </Route>
+          <Route path="/sign-in" />
+          <Route path="/sign-up" element={<Login />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <Main
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+                cards={cards}
+              />
+            }
+          />
+          <Route path="*" />
         </Routes>
 
         <Footer />
