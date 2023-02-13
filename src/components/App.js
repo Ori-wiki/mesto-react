@@ -11,6 +11,7 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import Login from "./Login.js";
+import Register from "./Register.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -103,8 +104,8 @@ function App() {
       <div className="page">
         <Header />
         <Routes>
-          <Route path="/sign-in" />
-          <Route path="/sign-up" element={<Login />} />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/sign-up" element={<Register />} />
           <Route
             path="/"
             exact

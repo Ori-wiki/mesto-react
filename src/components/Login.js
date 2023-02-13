@@ -2,18 +2,18 @@ import React from "react";
 
 function Login() {
   return (
-    <div className="login">
-      <h2 className="login__title">Вход</h2>
-      <form className="login__form">
-        <label className="login__label">
-          <input placeholder="Email" className="login__input"></input>
+    <div className="auth">
+      <h2 className="auth__title">Вход</h2>
+      <form className="auth__form">
+        <label className="auth__label">
+          <input placeholder="Email" className="auth__input"></input>
           <span className="popup__input-error" />
         </label>
-        <label className="login__form">
-          <input placeholder="Пароль" className="login__input"></input>
+        <label className="auth__form">
+          <input placeholder="Пароль" className="auth__input"></input>
           <span className="popup__input-error" />
         </label>
-        <button type="submit" className="login__button-save">
+        <button type="submit" className="auth__button-save">
           Войти
         </button>
       </form>
